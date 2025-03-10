@@ -1,0 +1,79 @@
+/* Reset y estilos globales */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #eef2f3;
+    color: #333;
+  }
+  
+  /* Header */
+  header {
+    background: #003b73;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+  }
+  
+  header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0 0 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  header nav ul li {
+    margin: 0 1em;
+  }
+  
+  header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Main */
+  main {
+    padding: 2em;
+  }
+  
+  /* Sección de Estadísticas */
+  #stats-section {
+    background: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  .stats-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2em;
+  }
+  
+  .stat-card {
+    background: #003b73;
+    color: #fff;
+    padding: 1em;
+    border-radius: 4px;
+    flex: 1;
+    margin: 0 1em;
+  }
+  
+  .chart-container {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1em;
+    background: #003b73;
+    color: #fff;
+    margin-top: 2em;
+  }
+  

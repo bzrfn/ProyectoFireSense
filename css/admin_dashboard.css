@@ -1,0 +1,114 @@
+/* Global */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #eef2f3;
+    color: #333;
+  }
+  
+  /* Header (opcional si se usa en el dashboard, aquí el layout tiene barra lateral) */
+  header {
+    display: none;
+  }
+  
+  /* Dashboard Container */
+  .dashboard-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background: #003b73;
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar ul li a {
+    color: #f7f9fc;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .sidebar ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .dashboard-main {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+  }
+  
+  .dashboard-section {
+    margin-bottom: 30px;
+  }
+  
+  .stats-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .stat-card {
+    background: #003b73;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .chart-container {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1em;
+    background: #003b73;
+    color: #fff;
+    margin-top: 20px;
+  }
+  
+  /* Botón */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-add {
+    background: #28a745;
+    color: #fff;
+  }
+  
+  .btn-add:hover {
+    background: #218838;
+  }
+  

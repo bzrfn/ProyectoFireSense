@@ -1,0 +1,164 @@
+/* Reset y estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f1f1f1;
+    color: #333;
+  }
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Header */
+  header {
+    background: #003b73;
+    padding: 1em 0;
+    text-align: center;
+    color: #fff;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 0.5em;
+  }
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+  }
+  nav ul li a:hover {
+    color: #e6e6e6;
+  }
+  
+  /* Main */
+  main {
+    padding: 2em 0;
+  }
+  
+  /* Sección de Resumen de Alertas */
+  .alerts-overview {
+    background: #fff;
+    padding: 1.5em;
+    border-radius: 8px;
+    margin-bottom: 2em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .alerts-overview h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1em;
+  }
+  .alert-summary-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 1em;
+  }
+  .alert-summary-cards .card {
+    background: #003b73;
+    color: #fff;
+    padding: 1em;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+  }
+  .alert-summary-cards .card h3 {
+    margin-bottom: 0.5em;
+    font-size: 1.2rem;
+  }
+  
+  /* Sección de Lista de Alertas */
+  .alerts-list-section {
+    background: #fff;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 2em;
+  }
+  .alerts-list-section h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 1.8rem;
+  }
+  .alert-filter {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .alert-filter input {
+    padding: 0.5em;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .alerts-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .alerts-table th,
+  .alerts-table td {
+    padding: 0.75em;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 1rem;
+  }
+  .alerts-table th {
+    background: #003b73;
+    color: #fff;
+  }
+  
+  /* Sección de Gráfico de Alertas */
+  .alerts-chart-section {
+    background: #fff;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .chart-container {
+    background: #fff;
+    padding: 1em;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Etiquetas de severidad */
+  .severity {
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  .severity.critical {
+    background: #dc3545;
+    color: #fff;
+  }
+  .severity.warning {
+    background: #ffc107;
+    color: #333;
+  }
+  .severity.normal {
+    background: #28a745;
+    color: #fff;
+  }
+  
+  /* Footer */
+  footer {
+    background: #003b73;
+    padding: 1em 0;
+    text-align: center;
+    color: #fff;
+    margin-top: 2em;
+  }
+  

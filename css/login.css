@@ -1,0 +1,153 @@
+/* Estilo general */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, rgba(106, 17, 203, 0.7) 0%, rgba(37, 117, 252, 0.7) 100%), 
+                url('../images/fondo.jpg'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: overlay; /* Mezcla el gradiente con la imagen */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: #333;
+}
+
+/* Caja del formulario */
+section {
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+    position: relative;
+}
+
+/* Imagen del logo */
+.logo {
+    width: 80px; /* Ajusta el tamaño del logo */
+    margin-bottom: 10px;
+}
+
+/* Título */
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Etiquetas */
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Campos de entrada */
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: #6a11cb;
+}
+
+/* Select con icono personalizado */
+select {
+    background-color: #ffffff;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%236a11cb' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 40px;
+}
+
+/* Botón de enviar */
+input[type="submit"] {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease, transform 0.2s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+    transform: scale(1.05);
+}
+
+/* Texto de registro */
+p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Enlaces */
+a {
+    color: #6a11cb;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2575fc;
+    text-decoration: underline;
+}
+/* Asegura que todos los inputs tengan el mismo ancho */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%; /* Se asegura que todos ocupen el mismo ancho */
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    box-sizing: border-box; /* Para que padding y border no afecten el tamaño */
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Asegura que las etiquetas no desplacen los inputs */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Opcional: Ajusta el contenedor del formulario */
+section {
+    width: 350px; /* Ajusta el tamaño del contenedor para evitar desplazamientos */
+    max-width: 100%;
+    padding: 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
