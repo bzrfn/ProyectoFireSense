@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alertas - FireSense</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Enlace al CSS independiente para Alertas -->
+  <link rel="stylesheet" href="css/alertas-user.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Panel de Usuario - Alertas</h1>
+      <nav>
+        <ul>
+          <li><a href="user_dashboard.html">Inicio</a></li>
+          <li><a href="sensores-user.html">Sensores</a></li>
+          <li><a href="alertas-user.html">Alertas</a></li>
+          <li><a href="index.html">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="alerts-overview">
+        <h2>Resumen de Alertas</h2>
+        <div class="alert-summary-cards">
+          <div class="card">
+            <h3>Total de Alertas</h3>
+            <p>15</p>
+          </div>
+          <div class="card">
+            <h3>Alertas Críticas</h3>
+            <p>3</p>
+          </div>
+          <div class="card">
+            <h3>Alertas Recientes</h3>
+            <p>5</p>
+          </div>
+        </div>
+      </section>
+      <section class="alerts-list-section">
+        <h2>Historial de Alertas</h2>
+        <div class="alert-filter">
+          <input type="text" id="alertSearch" placeholder="Buscar alertas...">
+        </div>
+        <table class="alerts-table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Sensor</th>
+              <th>Tipo</th>
+              <th>Descripción</th>
+              <th>Severidad</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>18/02/2025</td>
+              <td>Sensor 001</td>
+              <td>Gas</td>
+              <td>Alerta por bajo nivel</td>
+              <td><span class="severity critical">Crítica</span></td>
+              <td>Sin atender</td>
+            </tr>
+            <tr>
+              <td>17/02/2025</td>
+              <td>Sensor 002</td>
+              <td>Humo</td>
+              <td>Humo detectado en zona de oficinas</td>
+              <td><span class="severity warning">Advertencia</span></td>
+              <td>Atendida</td>
+            </tr>
+            <tr>
+              <td>16/02/2025</td>
+              <td>Sensor 003</td>
+              <td>Fuego</td>
+              <td>Sistemas en estado normal</td>
+              <td><span class="severity normal">Normal</span></td>
+              <td>Sin atender</td>
+            </tr>
+            <!-- Más filas según se requiera -->
+          </tbody>
+        </table>
+      </section>
+      <section class="alerts-chart-section">
+        <h2>Tendencia de Alertas</h2>
+        <div class="chart-container">
+          <canvas id="alertChart"></canvas>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 FireSense. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      document.getElementById("alertSearch").addEventListener("keyup", function() {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll(".alerts-table tbody tr");
+        rows.forEach(row => {
+          let match = false;
+          row.querySelectorAll("td").forEach(cell => {
+            if (cell.textContent.toLowerCase().includes(filter)) {
+              match = true;
+            }
+          });
+          row.style.display = match ? "" : "none";
+        });
+      });
+      // Inicialización de gráfico de alertas con Chart.js
+      const ctx = document.getElementById('alertChart').getContext('2d');
+      const alertChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Críticas', 'Advertencia', 'Normal'],
+          datasets: [{
+            label: 'Cantidad de Alertas',
+            data: [3, 5, 7],
+            backgroundColor: [
+              'rgba(220,53,69,0.6)',
+              'rgba(255,193,7,0.6)',
+              'rgba(40,167,69,0.6)'
+            ],
+            borderColor: [
+              'rgba(220,53,69,1)',
+              'rgba(255,193,7,1)',
+              'rgba(40,167,69,1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

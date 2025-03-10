@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensores - FireSense</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Enlace al CSS independiente para Sensores (User) -->
+  <link rel="stylesheet" href="css/sensores-user.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Panel de Usuario - Sensores</h1>
+      <nav>
+        <ul>
+          <li><a href="user_dashboard.html">Inicio</a></li>
+          <li><a href="sensores-user.html">Sensores</a></li>
+          <li><a href="alertas-user.html">Alertas</a></li>
+          <li><a href="index.html">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="sensors-overview">
+        <h2>Resumen de Sensores</h2>
+        <div class="overview-cards">
+          <div class="card">
+            <h3>Total de Sensores</h3>
+            <p id="total-sensors">0</p>
+          </div>
+          <div class="card">
+            <h3>Sensores Operativos</h3>
+            <p id="operativos">0</p>
+          </div>
+          <div class="card">
+            <h3>Sensores en Alerta</h3>
+            <p id="alerta">0</p>
+          </div>
+        </div>
+      </section>
+      <section class="sensors-list-section">
+        <h2>Lista Detallada de Sensores</h2>
+        <div class="sensor-filter">
+          <input type="text" id="sensorSearch" placeholder="Buscar sensores...">
+        </div>
+        <table class="sensors-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Ubicación</th>
+              <th>Tipo</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="sensorsTableBody">
+            <!-- Se cargarán los sensores desde localStorage -->
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 FireSense. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      loadUserSensors();
+      document.getElementById("sensorSearch").addEventListener("keyup", function() {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll(".sensors-table tbody tr");
+        rows.forEach(row => {
+          let match = false;
+          row.querySelectorAll("td").forEach(cell => {
+            if (cell.textContent.toLowerCase().includes(filter)) {
+              match = true;
+            }
+          });
+          row.style.display = match ? "" : "none";
+        });
+      });
+    });
+    function loadUserSensors() {
+      const sensors = JSON.parse(localStorage.getItem("sensorsData")) || [];
+      const tableBody = document.getElementById("sensorsTableBody");
+      tableBody.innerHTML = "";
+      let total = sensors.length;
+      let operativos = 0;
+      let alerta = 0;
+      sensors.forEach(sensor => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${sensor.id}</td>
+          <td>${sensor.nombre}</td>
+          <td>${sensor.ubicacion}</td>
+          <td>${sensor.tipo}</td>
+          <td>${sensor.estado}</td>
+        `;
+        tableBody.appendChild(row);
+        if(sensor.estado.toLowerCase() === "normal"){
+          operativos++;
+        } else {
+          alerta++;
+        }
+      });
+      document.getElementById("total-sensors").textContent = total;
+      document.getElementById("operativos").textContent = operativos;
+      document.getElementById("alerta").textContent = alerta;
+    }
+  </script>
+</body>
+</html>

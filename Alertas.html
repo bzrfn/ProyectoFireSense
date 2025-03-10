@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FireSense - Alertas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .alert-card {
+            border-left: 5px solid red;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .favorites-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .favorites-btn:hover {
+            background-color: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Alertas de FireSense</h1>
+
+        <div id="alertas-lista">
+            <!-- Las alertas se mostrarán aquí dinámicamente -->
+        </div>
+
+        <h2 class="text-center mt-5">Favoritos</h2>
+        <div id="favoritos-lista" class="mt-3">
+            <p class="text-center text-muted">No hay alertas favoritas aún.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', iniciarApp);
+
+        function iniciarApp() {
+            const alertas = obtenerAlertasSimuladas();
+            mostrarAlertas(alertas);
+
+            const favoritos = JSON.parse(localStorage.getItem('alertasFavoritas')) ?? [];
+            mostrarFavoritos(favoritos);
+        }
+
+        function obtenerAlertasSimuladas() {
+            return [
+                { id: 1, tipo: 'Humo', nivel: 'Alto', ubicacion: 'Planta Baja', fecha: '2025-02-20' },
+                { id: 2, tipo: 'Gas', nivel: 'Moderado', ubicacion: 'Cocina', fecha: '2025-02-20' },
+                { id: 3, tipo: 'Fuego', nivel: 'Crítico', ubicacion: 'Almacén', fecha: '2025-02-19' }
+            ];
+        }
+
+        function mostrarAlertas(alertas) {
+            const lista = document.getElementById('alertas-lista');
+            alertas.forEach(alerta => {
+                const alertaDiv = document.createElement('div');
+                alertaDiv.classList.add('alert-card');
+                alertaDiv.innerHTML = `
+                    <h4>${alerta.tipo}</h4>
+                    <p><strong>Nivel:</strong> ${alerta.nivel}</p>
+                    <p><strong>Ubicación:</strong> ${alerta.ubicacion}</p>
+                    <p><strong>Fecha:</strong> ${alerta.fecha}</p>
+                    <button class="favorites-btn" onclick="toggleFavorito(${alerta.id}, '${alerta.tipo}', '${alerta.nivel}', '${alerta.ubicacion}', '${alerta.fecha}')">
+                        ${existeEnFavoritos(alerta.id) ? 'Eliminar de Favoritos' : 'Añadir a Favoritos'}
+                    </button>
+                `;
+                lista.appendChild(alertaDiv);
+            });
+        }
+
+        function toggleFavorito(id, tipo, nivel, ubicacion, fecha) {
+            let favoritos = JSON.parse(localStorage.getItem('alertasFavoritas')) ?? [];
+            if (existeEnFavoritos(id)) {
+                favoritos = favoritos.filter(alerta => alerta.id !== id);
+                localStorage.setItem('alertasFavoritas', JSON.stringify(favoritos));
+                alert('Alerta eliminada de favoritos');
+            } else {
+                favoritos.push({ id, tipo, nivel, ubicacion, fecha });
+                localStorage.setItem('alertasFavoritas', JSON.stringify(favoritos));
+                alert('Alerta añadida a favoritos');
+            }
+            actualizarVistaFavoritos();
+        }
+
+        function existeEnFavoritos(id) {
+            const favoritos = JSON.parse(localStorage.getItem('alertasFavoritas')) ?? [];
+            return favoritos.some(alerta => alerta.id === id);
+        }
+
+        function mostrarFavoritos(favoritos) {
+            const listaFavoritos = document.getElementById('favoritos-lista');
+            listaFavoritos.innerHTML = '';
+            if (favoritos.length === 0) {
+                listaFavoritos.innerHTML = '<p class="text-center text-muted">No hay alertas favoritas aún.</p>';
+                return;
+            }
+
+            favoritos.forEach(alerta => {
+                const alertaDiv = document.createElement('div');
+                alertaDiv.classList.add('alert-card');
+                alertaDiv.innerHTML = `
+                    <h4>${alerta.tipo}</h4>
+                    <p><strong>Nivel:</strong> ${alerta.nivel}</p>
+                    <p><strong>Ubicación:</strong> ${alerta.ubicacion}</p>
+                    <p><strong>Fecha:</strong> ${alerta.fecha}</p>
+                `;
+                listaFavoritos.appendChild(alertaDiv);
+            });
+        }
+
+        function actualizarVistaFavoritos() {
+            const favoritos = JSON.parse(localStorage.getItem('alertasFavoritas')) ?? [];
+            mostrarFavoritos(favoritos);
+        }
+    </script>
+</body>
+</html>

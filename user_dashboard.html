@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard - FireSense</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Enlace al CSS independiente para el dashboard de usuario -->
+  <link rel="stylesheet" href="css/user_dashboard.css">
+  <!-- Incluir Chart.js para el gráfico -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Panel de Usuario - FireSense</h1>
+      <nav>
+        <ul>
+          <li><a href="user_dashboard.html">Inicio</a></li>
+          <li><a href="sensores-user.html">Sensores</a></li>
+          <li><a href="alertas-user.html">Alertas</a></li>
+          <li><a href="index.html">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="dashboard-overview">
+        <h2>Resumen</h2>
+        <div class="overview-cards">
+          <div class="card">
+            <h3>Total de Sensores</h3>
+            <p>50</p>
+          </div>
+          <div class="card">
+            <h3>Alertas Activas</h3>
+            <p>2</p>
+          </div>
+          <div class="card">
+            <h3>Uptime Promedio</h3>
+            <p>99%</p>
+          </div>
+        </div>
+      </section>
+      <section class="dashboard-chart">
+        <h2>Tendencia de Sensores</h2>
+        <div class="chart-container">
+          <canvas id="dashboardChart"></canvas>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 FireSense. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const ctx = document.getElementById('dashboardChart').getContext('2d');
+      const dashboardChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+          datasets: [{
+            label: 'Sensores en Línea',
+            data: [45, 46, 47, 48, 50],
+            backgroundColor: 'rgba(0, 123, 255, 0.5)',
+            borderColor: 'rgba(0, 123, 255, 1)',
+            fill: true,
+            tension: 0.3
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

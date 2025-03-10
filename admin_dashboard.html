@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - FireSense</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Enlace al CSS independiente para admin_dashboard -->
+  <link rel="stylesheet" href="css/admin_dashboard.css">
+  <!-- Incluir Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+    <div class="sidebar">
+      <h2>Dashboard</h2>
+      <ul>
+        <li><a href="admin_dashboard.html">Inicio</a></li>
+        <li><a href="gestionar-sensores.html">Gestionar Sensores</a></li>
+        <li><a href="estadisticas.html">Estadísticas</a></li>
+        <li><a href="index.html">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+    <div class="dashboard-main">
+      <h1>Panel de Administración</h1>
+      <div class="dashboard-section" id="dashboard-sensors">
+        <h2>Gestión de Sensores</h2>
+        <p>Resumen: 50 sensores registrados, 2 en alerta.</p>
+        <a href="gestionar-sensores.html" class="btn btn-add">Ir a Gestión de Sensores</a>
+      </div>
+      <div class="dashboard-section" id="dashboard-stats">
+        <h2>Estadísticas</h2>
+        <div class="stats-summary">
+          <div class="stat-card">
+            <h3>Total de Sensores</h3>
+            <p>50</p>
+          </div>
+          <div class="stat-card">
+            <h3>Alertas Activas</h3>
+            <p>2</p>
+          </div>
+          <div class="stat-card">
+            <h3>Promedio de Uptime</h3>
+            <p>99%</p>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="dashboardChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 FireSense. Todos los derechos reservados.</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const ctx = document.getElementById('dashboardChart').getContext('2d');
+      const dashboardChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+          datasets: [{
+            label: 'Sensores en Línea',
+            data: [45, 46, 47, 48, 50],
+            backgroundColor: 'rgba(0, 123, 255, 0.5)',
+            borderColor: 'rgba(0, 123, 255, 1)',
+            fill: true,
+            tension: 0.3
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
